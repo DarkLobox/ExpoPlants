@@ -8,6 +8,7 @@ import {
 import auth from "@react-native-firebase/auth";
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
+import Navigation from "./Navigation";
 
 export default function App() {
   // Set an initializing state whilst Firebase connects
@@ -76,17 +77,7 @@ export default function App() {
     );
   }
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={{ marginTop: 100, alignItems: "center" }}>
-        <Text style={styles.text}>Welcome, {user.displayName}</Text>
-        <Image
-          source={{ uri: user.photoURL }}
-          style={{ height: 300, width: 300, borderRadius: 150, margin: 50 }}
-        />
-        <Button title="Sign Out" onPress={signOut} />
-      </View>
-    </View>
+    <Navigation user={user} signOut={signOut}/>
   );
 }
 
