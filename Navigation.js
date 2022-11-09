@@ -9,6 +9,8 @@ import PlantDetailScreen from "./screens/PlantDetailScreen";
 import PlantListScreen from "./screens/PlantListScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 
+import { firebase } from "./config";
+
 const HomeStackNavigator = createNativeStackNavigator();
 
 function MyStack() {
@@ -36,7 +38,7 @@ function MyStack() {
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs(props) {
+function MyTabs({ user, signOut }) {
   return (
     <Tab.Navigator
       initialRouteName="PlantList"
@@ -58,18 +60,36 @@ function MyTabs(props) {
       />
       <Tab.Screen
         name="Profile"
-        children={()=><ProfileScreen user={props.user} signOut={props.signOut}/>}
-        //component={ProfileScreen}
+        children={() => <ProfileScreen user={user} signOut={signOut} />}
         options={{ tabBarLabel: "Profile", tabBarBadge: 10, headerShown: true }}
       />
     </Tab.Navigator>
   );
 }
 
-export default function Navigation(props) {
+export default function Navigation({ user, signOut }) {
+  //Prueba llamada a firebase
+  const getData = () => {
+    firebase
+      .firestore()
+      .collection("plants")
+      .doc(user.email)
+      .collection("plants")
+      .onSnapshot((query) => {
+        const plants = [];
+        query.forEach((element) => {
+          plants.push({ ...element.data(), id: element.id });
+        });
+        console.log("Entre al getData");
+        console.log(plants);
+        //setFlowerpots(plants);
+      });
+  };
+  getData();
+
   return (
     <NavigationContainer>
-      <MyTabs user={props.user} signOut={props.signOut}/>
+      <MyTabs user={user} signOut={signOut} />
     </NavigationContainer>
   );
 }

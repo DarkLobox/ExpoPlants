@@ -1,16 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from "react-native";
 
-const ProfileScreen = (props) => {
+const ProfileScreen = ({user, signOut}) => {
   return (
     <View style={styles.container}>
       <View style={{ marginTop: 100, alignItems: "center" }}>
-        <Text style={styles.text}>Welcome, {props.user.displayName}</Text>
+        <Text style={styles.text}>Welcome, {user.displayName}</Text>
         <Image
-          source={{ uri: props.user.photoURL }}
+          source={{ uri: user.photoURL }}
           style={{ height: 300, width: 300, borderRadius: 150, margin: 50 }}
         />
-        <Button title="Sign Out" onPress={props.signOut} />
+        <Button title="Sign Out" onPress={signOut} />
       </View>
     </View>
   );

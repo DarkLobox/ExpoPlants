@@ -7,6 +7,7 @@ import {
 } from "@react-native-google-signin/google-signin";
 import auth from "@react-native-firebase/auth";
 import React, { useState, useEffect } from "react";
+import { firebase } from "./config";
 import Header from "./Header";
 import Navigation from "./Navigation";
 
@@ -29,6 +30,7 @@ export default function App() {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
+
   }, []);
 
   const onGoogleButtonPress = async () => {
@@ -76,9 +78,7 @@ export default function App() {
       </View>
     );
   }
-  return (
-    <Navigation user={user} signOut={signOut}/>
-  );
+  return <Navigation user={user} signOut={signOut} />;
 }
 
 const styles = StyleSheet.create({
