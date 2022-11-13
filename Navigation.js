@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 // Components
 import PlantAddScreen from "./screens/PlantAddScreen";
@@ -49,6 +50,9 @@ function MyTabs({ user, signOut }) {
         component={MyStack}
         options={{
           tabBarLabel: "PlantList",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={color} size={size} />
+          ),
           tabBarBadge: 10,
           headerShown: false,
         }}
@@ -56,12 +60,26 @@ function MyTabs({ user, signOut }) {
       <Tab.Screen
         name="PlantAdd"
         component={PlantAddScreen}
-        options={{ tabBarLabel: "Home", tabBarBadge: 10, headerShown: true }}
+        options={{
+          tabBarLabel: "PlantAdd",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="add-circle" color={color} size={size} />
+          ),
+          tabBarBadge: 10,
+          headerShown: true,
+        }}
       />
       <Tab.Screen
         name="Profile"
         children={() => <ProfileScreen user={user} signOut={signOut} />}
-        options={{ tabBarLabel: "Profile", tabBarBadge: 10, headerShown: true }}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user" color={color} size={size} />
+          ),
+          tabBarBadge: 10,
+          headerShown: true,
+        }}
       />
     </Tab.Navigator>
   );
@@ -69,7 +87,7 @@ function MyTabs({ user, signOut }) {
 
 export default function Navigation({ user, signOut }) {
   //Prueba llamada a firebase
-  const getData = () => {
+  /*const getData = () => {
     firebase
       .firestore()
       .collection("plants")
@@ -85,7 +103,7 @@ export default function Navigation({ user, signOut }) {
         //setFlowerpots(plants);
       });
   };
-  getData();
+  getData();*/
 
   return (
     <NavigationContainer>

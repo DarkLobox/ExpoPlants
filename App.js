@@ -8,7 +8,6 @@ import {
 import auth from "@react-native-firebase/auth";
 import React, { useState, useEffect } from "react";
 import { firebase } from "./config";
-import Header from "./Header";
 import Navigation from "./Navigation";
 
 export default function App() {
@@ -30,7 +29,6 @@ export default function App() {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
-
   }, []);
 
   const onGoogleButtonPress = async () => {
@@ -70,11 +68,14 @@ export default function App() {
   if (!user) {
     return (
       <View style={styles.container}>
-        <Header />
-        <GoogleSigninButton
-          style={{ width: 300, height: 65, marginTop: 300 }}
-          onPress={onGoogleButtonPress}
+        <Image
+          source={{
+            uri: "https://riego-plantas.web.app/assets/logo.png",
+          }}
+          style={styles.imagen}
         />
+        <Text style={styles.text}>Login</Text>
+        <GoogleSigninButton style={styles.button} onPress={onGoogleButtonPress} />
       </View>
     );
   }
@@ -90,5 +91,17 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 23,
     fontWeight: "bold",
+  },
+  imagen: {
+    marginTop: 60,
+    height: 300,
+    width: 300,
+    margin: 10,
+  },
+  button: {
+    width: 250,
+    height: 65,
+    marginTop: 100,
+    borderRadius: 60,
   },
 });

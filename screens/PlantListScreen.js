@@ -1,32 +1,63 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, SafeAreaView, FlatList, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import ListPlantItem from "../components/ListPlantItem";
 
 const PlantListScreen = () => {
   const navigation = useNavigation();
+  const url_img =
+    "https://principia.io/media/uploads/images/colegio-domus/cover-plantas.jpg";
+  const productos = [
+    {
+      image: url_img,
+      nombre: "iphone12",
+      color: "Blanco",
+      id: "001",
+    },
+    {
+      image: url_img,
+      nombre: "iphone13",
+      color: "Negro",
+      id: "002",
+    },
+    {
+      image: url_img,
+      nombre: "iphone14",
+      color: "Azul",
+      id: "003",
+    },
+    {
+      image: url_img,
+      nombre: "iphone15",
+      color: "Amarrillo",
+      id: "004",
+    },
+    {
+      image: url_img,
+      nombre: "iphone16",
+      color: "Amarrillo",
+      id: "005",
+    },
+  ];
 
   return (
-    <View>
-      <Text style={{ fontSize: 30, textAlign: "center", marginTop: "20%" }}>
-        PlantList Screen
-      </Text>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("PlantDetailScreen")}
-        style={{
-          backgroundColor: "purple",
-          padding: 10,
-          marginTop: "20%",
-          width: "50%",
-          alignSelf: "center",
-          borderRadius: 10,
-        }}
-      >
-        <Text style={{ fontSize: 15, textAlign: "center", color: "white" }}>
-          Go to Plant Detail
-        </Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView>
+      <FlatList
+        style={styles.flatList}
+        data={productos}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item, index }) => <ListPlantItem item={item} />}
+      />
+    </SafeAreaView>
   );
 };
+
+const win = Dimensions.get("window");
+const styles = StyleSheet.create({
+  flatList: {
+    backgroundColor: "#fff",
+    padding: 10,
+  },
+});
 
 export default PlantListScreen;
