@@ -85,12 +85,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#D9E3F1",
     alignItems: "center",
   },
   text: {
     fontSize: 23,
     fontWeight: "bold",
+    color: "#485785"
   },
   imagen: {
     marginTop: 60,

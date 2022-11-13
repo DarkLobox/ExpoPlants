@@ -1,35 +1,44 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+} from "react-native";
 
 const PlantDetailScreen = () => {
   return (
     <View style={styles.view}>
       <View style={styles.viewPlanta}>
+        <Text style={styles.text}>Nombre</Text>
         <View style={styles.viewCabecera}>
-          <Text>Nombre</Text>
           <Image
             source={{
               uri: "https://principia.io/media/uploads/images/colegio-domus/cover-plantas.jpg",
             }}
             style={styles.imagen}
           />
-          <Text>Descripcion</Text>
+          <Text style={styles.text}>Descripcion</Text>
         </View>
-        <View style={styles.viewIrrigaciones}>
-          <Text>Irrigaciones: 0</Text>
-          <Text>Lunes: 00:00</Text>
-          <Text>Martes: 00:00</Text>
-          <Text>Miercoles: 00:00</Text>
-          <Text>Jueves: 00:00</Text>
-          <Text>Viernes: 00:00</Text>
-        </View>
+      </View>
+      <View style={styles.viewIrrigaciones}>
+        <Text style={styles.text}>Irrigaciones: 0</Text>
+        <Text style={styles.textButton}>Lunes: 00:00</Text>
+        <Text style={styles.textButton}>Martes: 00:00</Text>
+        <Text style={styles.textButton}>Miercoles: 00:00</Text>
+        <Text style={styles.textButton}>Jueves: 00:00</Text>
+        <Text style={styles.textButton}>Viernes: 00:00</Text>
+      </View>
+      <View style={styles.viewOpciones}>
+        <Text style={styles.text}>Fecha de registro: 00/00/0000</Text>
         <View style={styles.viewBotones}>
-          <Text>Fecha de registro: 00/00/0000</Text>
-          <TouchableOpacity>
-            <Text>Regar</Text>
+          <TouchableOpacity style={styles.buttonRegar}>
+            <Text style={styles.textButton}>Regar</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Eliminar Planta</Text>
+          <TouchableOpacity style={styles.buttonEliminar}>
+            <Text style={styles.textButton}>Eliminar Planta</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -37,21 +46,57 @@ const PlantDetailScreen = () => {
   );
 };
 
+const win = Dimensions.get("window");
 const styles = StyleSheet.create({
-  view: { backgroundColor: "#000", padding: 30 },
-  viewPlanta: {
-    backgroundColor: "#222",
-    padding: 60,
+  view: {
+    backgroundColor: "#D9E3F1",
+    padding: 30,
+    width: win.width,
+    height: win.height,
   },
-  viewCabecera: { backgroundColor: "#444", padding: 10 },
-  viewIrrigaciones: { backgroundColor: "#666", padding: 10 },
-  viewBotones: {backgroundColor: "#888", padding: 10},
+  viewPlanta: {
+    backgroundColor: "#E4EBF5",
+  },
+  viewCabecera: {
+    backgroundColor: "#E4EBF5",
+    padding: 10,
+    alignItems: "center",
+  },
+  viewIrrigaciones: {
+    backgroundColor: "#5B62F4",
+    padding: 10,
+    alignItems: "center",
+  },
+  viewOpciones: {
+    backgroundColor: "#E4EBF5",
+    padding: 10,
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+  },
   imagen: {
     height: 200,
     width: 200,
     borderRadius: 100,
     margin: 30,
   },
+  viewBotones: { flex: 1, flexDirection: "row" },
+  buttonRegar: {
+    backgroundColor: "#5B62F4",
+    padding: 6,
+    alignItems: "center",
+    width: win.width / 3,
+    height: 40,
+  },
+  buttonEliminar: {
+    backgroundColor: "#E52527",
+    padding: 6,
+    alignItems: "center",
+    width: win.width / 3,
+    height: 40,
+  },
+  textButton: { color: "#fff", fontWeight: "bold" },
+  text: { color: "#7B8AB8" },
 });
 
 export default PlantDetailScreen;

@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 // Components
 import PlantAddScreen from "./screens/PlantAddScreen";
@@ -16,21 +16,21 @@ const HomeStackNavigator = createNativeStackNavigator();
 
 function MyStack() {
   return (
-    <HomeStackNavigator.Navigator initialRouteName="PlantListScreen">
+    <HomeStackNavigator.Navigator initialRouteName="Plantas">
       <HomeStackNavigator.Screen
-        name="PlantListScreen"
+        name="Plantas"
         component={PlantListScreen}
       />
       <HomeStackNavigator.Screen
-        name="PlantAddScreen"
+        name="Agregar Planta"
         component={PlantAddScreen}
       />
       <HomeStackNavigator.Screen
-        name="ProfileScreen"
+        name="Perfil"
         component={ProfileScreen}
       />
       <HomeStackNavigator.Screen
-        name="PlantDetailScreen"
+        name="Detalles de Planta"
         component={PlantDetailScreen}
       />
     </HomeStackNavigator.Navigator>
@@ -42,42 +42,39 @@ const Tab = createBottomTabNavigator();
 function MyTabs({ user, signOut }) {
   return (
     <Tab.Navigator
-      initialRouteName="PlantList"
-      screenOptions={{ tabBarActiveTintColor: "purple" }}
+      initialRouteName="Plantas"
+      screenOptions={{ tabBarActiveTintColor: "#7B8AB8" }}
     >
       <Tab.Screen
-        name="PlantList"
+        name="Plantas"
         component={MyStack}
         options={{
-          tabBarLabel: "PlantList",
+          tabBarLabel: "Plantas",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" color={color} size={size} />
           ),
-          tabBarBadge: 10,
           headerShown: false,
         }}
       />
       <Tab.Screen
-        name="PlantAdd"
+        name="Agregar Planta"
         component={PlantAddScreen}
         options={{
-          tabBarLabel: "PlantAdd",
+          tabBarLabel: "Agregar Planta",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="add-circle" color={color} size={size} />
           ),
-          tabBarBadge: 10,
           headerShown: true,
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="Perfil"
         children={() => <ProfileScreen user={user} signOut={signOut} />}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: "Perfil",
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user" color={color} size={size} />
           ),
-          tabBarBadge: 10,
           headerShown: true,
         }}
       />

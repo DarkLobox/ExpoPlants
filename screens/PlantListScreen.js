@@ -10,32 +10,32 @@ const PlantListScreen = () => {
   const productos = [
     {
       image: url_img,
-      nombre: "iphone12",
-      color: "Blanco",
+      nombre: "Margatira",
+      color: "Esta planta ...",
       id: "001",
     },
     {
       image: url_img,
-      nombre: "iphone13",
-      color: "Negro",
+      nombre: "Girasol",
+      color: "Esta planta ...",
       id: "002",
     },
     {
       image: url_img,
-      nombre: "iphone14",
-      color: "Azul",
+      nombre: "Pino",
+      color: "Esta planta ...",
       id: "003",
     },
     {
       image: url_img,
-      nombre: "iphone15",
-      color: "Amarrillo",
+      nombre: "Menta",
+      color: "Esta planta ...",
       id: "004",
     },
     {
       image: url_img,
-      nombre: "iphone16",
-      color: "Amarrillo",
+      nombre: "Eucalipto",
+      color: "Esta planta ...",
       id: "005",
     },
   ];
@@ -55,7 +55,7 @@ const PlantListScreen = () => {
 const win = Dimensions.get("window");
 const styles = StyleSheet.create({
   flatList: {
-    backgroundColor: "#fff",
+    backgroundColor: "#D9E3F1",
     padding: 10,
   },
 });
